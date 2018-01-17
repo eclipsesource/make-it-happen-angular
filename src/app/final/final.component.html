@@ -1,0 +1,36 @@
+<div class="content">
+  <mat-card class="master">
+    <mat-card-header>
+      <mat-card-title>
+        <h3>Task List</h3>
+        <button mat-raised-button color="primary" (click)="add()">Add New</button>
+      </mat-card-title>
+      <mat-card-subtitle>Click on a task item to view its details.</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let task of tasks">
+          <a mat-button (click)="onSelect(task.id)" class="element">{{task.name||task.id}}</a>
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="detail">
+    <mat-card-header *ngIf="selected && !retrieving">
+      <mat-card-title>
+        <h3>Task Detail</h3>
+        <button mat-raised-button color="primary" (click)="save()">Submit</button>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-header *ngIf="!selected && !retrieving">
+        <h3><strong>No data selected!</strong></h3>
+    </mat-card-header>
+    <mat-card-header *ngIf="retrieving">
+      <h3><strong>Loading ...</strong></h3>
+    </mat-card-header>
+    <mat-card-content *ngIf="selected && !retrieving">
+      <json-forms [state]="state"></json-forms>
+    </mat-card-content>
+   
+  </mat-card>
+</div>

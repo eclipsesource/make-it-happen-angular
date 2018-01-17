@@ -1,0 +1,22 @@
+.content {
+    display: flex;
+    flex-direction: row;
+}
+.content > .master {
+    flex:1;
+}
+.content > .detail {
+    flex:3;
+}
+mat-card-header > * {
+    width: 100%;
+}
+.master .mat-card-title, .detail .mat-card-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.master .element {
+    width: 100%;
+    text-align: left;
+}

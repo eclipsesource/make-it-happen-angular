@@ -21,7 +21,11 @@
       "styles": [
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js",
+        "../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
+        "../node_modules/@jsonforms/material-renderers/dist/jsonforms.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
