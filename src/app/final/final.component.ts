@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {prepareStore, getData} from '../util';
 
 import {Schema} from './final.schema';
 import {UISchema} from './final.uischema';
@@ -13,7 +14,7 @@ import {TaskService} from './task.service';
 export class FinalComponent implements OnInit {
 
   private tasks;
-  private state;
+  private store;
   private selected = false;
   private retrieving = false;
 
@@ -30,7 +31,7 @@ export class FinalComponent implements OnInit {
   onSelect(taskId: any): void {
     this.retrieving = true;
     this.taskService.getTask(taskId).subscribe(task => {
-      this.state = {data: task, schema: Schema, uischema: UISchema };
+      this.store = prepareStore(task, Schema, UISchema);
       this.selected = true;
       this.retrieving = false;
     });
@@ -40,6 +41,6 @@ export class FinalComponent implements OnInit {
   }
 
   save(): void {
-    this.taskService.updateTask(this.state.data).subscribe(() => this.getTasks());
+    this.taskService.updateTask(getData(this.store)).subscribe(() => this.getTasks());
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {data as dayData, schema as daySchema} from '@jsonforms/examples/dist/ts-build/day1';
+import {data as dayData, schema as daySchema} from '@jsonforms/examples/lib/day1';
+import {prepareStore} from '../util';
 
 @Component({
   selector: 'app-day1',
@@ -8,7 +9,7 @@ import {data as dayData, schema as daySchema} from '@jsonforms/examples/dist/ts-
 })
 export class Day1Component implements OnInit {
 
-  private state = {data: dayData, schema: daySchema};
+  private store = prepareStore(dayData, daySchema);
 
   constructor() { }
 

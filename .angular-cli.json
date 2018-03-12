@@ -24,8 +24,9 @@
       "scripts": [
         "../node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js",
         "../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-        "../node_modules/@jsonforms/core/dist/jsonforms-core.js",
-        "../node_modules/@jsonforms/material-renderers/dist/jsonforms-material.js"
+        "../node_modules/@jsonforms/core/lib/jsonforms-core.js",
+        "../node_modules/@jsonforms/material-renderers/lib/jsonforms-material.js",
+        "../node_modules/@jsonforms/webcomponent/lib/jsonforms-webcomponent.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

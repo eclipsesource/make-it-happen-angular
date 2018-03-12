@@ -4,38 +4,28 @@ export const UISchema = {
     {
       'type': 'Control',
       'label': false,
-      'scope': {
-        '$ref': '#/properties/done'
-      }
+      'scope': '#/properties/done'
     },
     {
       'type': 'Control',
-      'scope': {
-        '$ref': '#/properties/name'
-      }
+      'scope': '#/properties/name'
     },
     {
       'type': 'HorizontalLayout',
       'elements': [
         {
           'type': 'Control',
-          'scope': {
-            '$ref': '#/properties/due_date'
-          }
+          'scope': '#/properties/due_date'
         },
         {
           'type': 'Control',
-          'scope': {
-            '$ref': '#/properties/rating'
-          }
+          'scope': '#/properties/rating'
         }
       ]
     },
     {
       'type': 'Control',
-      'scope': {
-        '$ref': '#/properties/description'
-      },
+      'scope': '#/properties/description',
       'options': {
           'multi': true
       }
@@ -45,21 +35,15 @@ export const UISchema = {
       'elements': [
         {
           'type': 'Control',
-          'scope': {
-            '$ref': '#/properties/recurrence'
-          }
+          'scope': '#/properties/recurrence'
         },
         {
           'type': 'Control',
-          'scope': {
-            '$ref': '#/properties/recurrence_interval'
-          },
+          'scope': '#/properties/recurrence_interval',
           'rule': {
               'effect': 'HIDE',
               'condition': {
-                  'scope': {
-                      '$ref': '#/properties/recurrence'
-                  },
+                  'scope': '#/properties/recurrence',
                   'expectedValue': 'Never'
               }
           }
@@ -68,9 +52,7 @@ export const UISchema = {
     },
     {
       'type': 'Control',
-      'scope': {
-        '$ref': '#/properties/comments'
-      },
+      'scope': '#/properties/comments',
       'options': {
           'simple': true
       }
