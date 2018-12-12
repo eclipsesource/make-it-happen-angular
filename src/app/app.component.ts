@@ -1,6 +1,6 @@
 import { NgRedux } from '@angular-redux/store';
 import { Component } from '@angular/core';
-import { Event, NavigationStart, Router } from '@angular/router';
+import { Event, NavigationEnd, Router } from '@angular/router';
 import { Actions, JsonFormsState } from '@jsonforms/core';
 import { ExampleState } from './util';
 
@@ -14,8 +14,8 @@ export class AppComponent {
 
     router.events.subscribe((event: Event) => {
 
-      if (event instanceof NavigationStart) {
-        const example = ngRedux.getState().examples.find(e => e.id === event.url.substr(1));
+      if (event instanceof NavigationEnd) {
+        const example = ngRedux.getState().examples.find(e => e.id === event.urlAfterRedirects.substr(1));
         if (example) {
           ngRedux.dispatch(Actions.init(
             example.data,

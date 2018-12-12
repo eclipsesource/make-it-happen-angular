@@ -69,13 +69,7 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js",
-              "node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js",
-              "node_modules/@jsonforms/core/lib/jsonforms-core.js",
-              "node_modules/@jsonforms/material-renderers/lib/jsonforms-material.js",
-              "node_modules/@jsonforms/webcomponent/lib/jsonforms-webcomponent.js"
-            ],
+            "scripts": [],
             "styles": [
               "src/styles.css"
             ],
