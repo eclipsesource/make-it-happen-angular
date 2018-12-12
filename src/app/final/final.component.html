@@ -29,7 +29,7 @@
       <h3><strong>Loading ...</strong></h3>
     </mat-card-header>
     <mat-card-content *ngIf="selected && !retrieving">
-      <json-forms [store]="store"></json-forms>
+      <jsonforms-outlet></jsonforms-outlet>
     </mat-card-content>
    
   </mat-card>

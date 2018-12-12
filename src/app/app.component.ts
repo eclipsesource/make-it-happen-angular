@@ -1,4 +1,8 @@
+import { NgRedux } from '@angular-redux/store';
 import { Component } from '@angular/core';
+import { Event, NavigationStart, Router } from '@angular/router';
+import { Actions, JsonFormsState } from '@jsonforms/core';
+import { ExampleState } from './util';
 
 @Component({
   selector: 'app-root',
@@ -6,109 +10,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  private schema = {
-    'type': 'object',
-    'properties': {
-      'name': {
-        'type': 'string',
-        'minLength': 3
-      },
-      'personalData': {
-        'type': 'object',
-        'properties': {
-          'age': {
-            'type': 'integer'
-          },
-          'height': {
-            'type': 'number'
-          }
-        },
-        'required': ['age', 'height']
-      },
-      'vegetarian': {
-        'type': 'boolean'
-      },
-      'birthDate': {
-        'type': 'string',
-        'format': 'date'
-      },
-      'nationality': {
-        'type': 'string',
-        'enum': ['DE', 'IT', 'JP', 'US', 'RU', 'Other']
-      },
-      'occupation': {
-        'type': 'string'
+  constructor(router: Router, ngRedux: NgRedux<JsonFormsState & ExampleState>) {
+
+    router.events.subscribe((event: Event) => {
+
+      if (event instanceof NavigationStart) {
+        const example = ngRedux.getState().examples.find(e => e.id === event.url.substr(1));
+        if (example) {
+          ngRedux.dispatch(Actions.init(
+            example.data,
+            example.schema,
+            example.uischema
+          ));
+        }
       }
-    },
-    'required': ['occupation', 'nationality']
-  };
-  private uischema = {
-    'type': 'VerticalLayout',
-    'elements': [
-      {
-        'type': 'HorizontalLayout',
-        'elements': [
-          {
-            'type': 'Control',
-            'label': {
-              'text': 'Name',
-              'show': true
-            },
-            'scope': {
-              '$ref': '#/properties/name'
-            }
-          },
-          {
-            'type': 'Control',
-            'label': {
-              'text': 'Age'
-            },
-            'scope': {
-              '$ref': '#/properties/personalData/properties/age'
-            }
-          },
-          {
-            'type': 'Control',
-            'label': 'Height',
-            'scope': {
-              '$ref': '#/properties/personalData/properties/height'
-            }
-          }
-        ]
-      },
-      {
-        'type': 'HorizontalLayout',
-        'elements': [
-          {
-            'type': 'Control',
-            'label': 'Nationality',
-            'scope': {
-              '$ref': '#/properties/nationality'
-            }
-          },
-          {
-            'type': 'Control',
-            'label': 'Occupation',
-            'scope': {
-              '$ref': '#/properties/occupation'
-            },
-            'suggestion': ['Accountant', 'Engineer', 'Freelancer',
-              'Journalism', 'Physician', 'Student', 'Teacher', 'Other']
-          },
-          {
-            'type': 'Control',
-            'label': 'Birthday',
-            'scope': {
-              '$ref': '#/properties/birthDate'
-            }
-          }
-        ]
-      }
-    ]
-  };
-  private data = {
-    name: 'John Doe',
-    birthDate: '1985-06-02'
-  };
+    });
+  }
 }
