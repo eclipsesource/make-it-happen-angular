@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Day4Component } from './day4.component';
+import { SimpleComponent } from './simple.component';
 
-describe('Day4Component', () => {
-  let component: Day4Component;
-  let fixture: ComponentFixture<Day4Component>;
+describe('SimpleComponent', () => {
+  let component: SimpleComponent;
+  let fixture: ComponentFixture<SimpleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Day4Component ],
+      declarations: [ SimpleComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Day4Component);
+    fixture = TestBed.createComponent(SimpleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

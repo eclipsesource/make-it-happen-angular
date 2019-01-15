@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {prepareStore, getData} from '../util';
 
 import {Schema} from './final.schema';
 import {UISchema} from './final.uischema';
 import {TaskService} from './task.service';
+import { NgRedux } from '@angular-redux/store';
+import { JsonFormsState, Actions, getData } from '@jsonforms/core';
+import { ExampleState } from '../util';
 
 @Component({
   selector: 'app-final',
@@ -14,11 +16,13 @@ import {TaskService} from './task.service';
 export class FinalComponent implements OnInit {
 
   private tasks;
-  private store;
-  private selected = false;
-  private retrieving = false;
+  selected = false;
+  retrieving = false;
 
-  constructor(private taskService: TaskService) { }
+  constructor(
+    private taskService: TaskService,
+    private ngRedux: NgRedux<JsonFormsState & ExampleState>
+  ) { }
 
   ngOnInit() {
     this.getTasks();
@@ -31,7 +35,11 @@ export class FinalComponent implements OnInit {
   onSelect(taskId: any): void {
     this.retrieving = true;
     this.taskService.getTask(taskId).subscribe(task => {
-      this.store = prepareStore(task, Schema, UISchema);
+      this.ngRedux.dispatch(Actions.init(
+        task,
+        Schema,
+        UISchema
+      ));
       this.selected = true;
       this.retrieving = false;
     });
@@ -41,6 +49,6 @@ export class FinalComponent implements OnInit {
   }
 
   save(): void {
-    this.taskService.updateTask(getData(this.store)).subscribe(() => this.getTasks());
+    this.taskService.updateTask(getData(this.ngRedux.getState())).subscribe(() => this.getTasks());
   }
 }
