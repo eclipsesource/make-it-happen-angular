@@ -15,7 +15,7 @@ import { ExampleState } from '../util';
 })
 export class FinalComponent implements OnInit {
 
-  private tasks;
+  tasks;
   selected = false;
   retrieving = false;
 
