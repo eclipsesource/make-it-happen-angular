@@ -1,4 +1,4 @@
-import { NgRedux } from '@angular-redux/store';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { HttpClientModule } from '@angular/common/http';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { MatButtonModule, MatCardModule, MatListModule, MatToolbarModule } from '@angular/material';
@@ -22,9 +22,6 @@ import { ExampleState, initialState, rootReducer } from './util';
   imports: [
     BrowserModule,
     JsonFormsAngularMaterialModule,
-    MatButtonModule,
-    MatCardModule,
-    MatListModule,
     MatToolbarModule,
     AppRoutingModule,
     HttpClientModule,

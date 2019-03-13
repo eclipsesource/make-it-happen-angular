@@ -4,10 +4,12 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "paths": {"@jsonforms/*": ["../node_modules/@jsonforms/*"]}
   },
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  
 }
