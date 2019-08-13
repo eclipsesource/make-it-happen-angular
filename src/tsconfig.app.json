@@ -4,7 +4,12 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "module": "es2015",
-    "types": []
+    "types": ["node"],
+    "paths": {
+        "json-schema-ref-parser": [
+          "../node_modules/json-schema-ref-parser/dist/ref-parser.js"
+        ]
+    }
   },
   "exclude": [
     "test.ts",

@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { JsonFormsAngularMaterialModule } from '@jsonforms/angular-material';
 import { JsonFormsState } from '@jsonforms/core';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { LocaleValidationModule, TranslationModule } from 'angular-l10n';
 import { AppRoutingModule } from './/app-routing.module';
 import { AppComponent } from './app.component';
 import { FinalComponent } from './final/final.component';
@@ -28,13 +29,14 @@ import { ExampleState, initialState, rootReducer } from './util';
     MatToolbarModule,
     AppRoutingModule,
     HttpClientModule,
-
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
-    )
+    ),
+    LocaleValidationModule.forRoot(),
+    TranslationModule.forRoot({})
   ],
   providers: [],
   bootstrap: [AppComponent],
